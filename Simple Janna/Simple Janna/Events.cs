@@ -13,12 +13,53 @@ namespace Simple_Janna
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+            GameObject.OnCreate += OnCreate;
+            GameObject.OnDelete += OnDelete;
+            Obj_AI_Base.OnUpdatePosition += OnUpdate;
         }
 
         public static void Initialize()
         {
         }
+        public static void OnUpdate(GameObject obj, EventArgs args)
+        {
+            var missile = obj as MissileClient;
+            if (missile != null &&
+                missile.SpellCaster != null &&
+                missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient &&
+                logic.Wlogic.ProjectileList.Contains(missile))
+            {
+                elogic.ProjectileList.Remove(missile);
+                elogic.ProjectileList.Add(missile);
+            }
+        }
 
+        public static void OnCreate(GameObject obj, EventArgs args)
+        {
+            var missile = obj as MissileClient;
+            if (missile != null &&
+                missile.SpellCaster != null &&
+                missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient)
+                elogic.ProjectileList.Add(missile);
+        }
+
+        public static void OnDelete(GameObject obj, EventArgs args)
+        {
+            if (obj == null)
+                return;
+
+            var missile = obj as MissileClient;
+            if (missile != null &&
+                missile.SpellCaster != null &&
+                missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient &&
+                logic.Wlogic.ProjectileList.Contains(missile))
+            {
+                elogic.ProjectileList.Remove(missile);
+            }
+}
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender,
             Interrupter.InterruptableSpellEventArgs e)
         {
@@ -38,22 +79,6 @@ namespace Simple_Janna
                     x => x.IsAlly && Program._Player.IsInRange(x, SpellFactory.Q.Range)))
                     if (sender.IsValidTarget(SpellFactory.Q.Range))
                         SpellFactory.Q.Cast(sender);
-        }
-
-        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            if (sender.IsAlly ||
-                Program._Player.ManaPercent < Config.JannaAutoShieldMenu["AShieldMana"].Cast<Slider>().CurrentValue ||
-                !Config.JannaAutoShieldMenu["AShield"].Cast<CheckBox>().CurrentValue)
-                return;
-
-            foreach (var ally in EntityManager.Heroes.Allies.Where(
-                x => Program._Player.IsInRange(x, SpellFactory.E.Range)))
-                if (sender is AIHeroClient && args.End.Distance(ally) <= 200)
-                    if (SpellProtectDB.AvoidSpells.ContainsKey(sender.BaseSkinName))
-                        if (SpellProtectDB.AvoidSpells[sender.BaseSkinName].Contains(args.SData.Name))
-                            if (Config.JannaAutoShieldMenu[args.SData.Name].Cast<CheckBox>().CurrentValue)
-                                SpellFactory.E.Cast(ally);
         }
     }
 }
