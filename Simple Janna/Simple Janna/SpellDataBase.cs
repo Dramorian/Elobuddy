@@ -1,14 +1,11 @@
 ﻿using EloBuddy;
-using EloBuddy.SDK;
-using EloBuddy.SDK.Enumerations;
-using System.Linq;
 using System.Collections.Generic;
-using SharpDX;
+
 
 
 namespace UnsignedEvade
 {
-    static class SpellDatabase
+    internal static class SpellDatabase
     {
         public enum ProjectileType
         {

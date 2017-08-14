@@ -14,44 +14,18 @@ namespace Simple_Mundo
 
         public static readonly string[] MonstersNames =
         {
-            "SRU_Crab",
-            "SRU_Krug",
-            "SRU_Gromp",
-            "SRU_Murkwolf",
-            "SRU_Razorbeak",
-            "TTNGolem",
-            "TTNWolf",
-            "TTNWraith",
-            "SRU_Red",
-            "SRU_Blue",
-            "SRU_Dragon_Water",
-            "SRU_Dragon_Fire",
-            "SRU_Dragon_Earth",
-            "SRU_Dragon_Air",
-            "SRU_Dragon_Elder",
-            "SRU_RiftHerald",
-            "SRU_Baron",
-            "TT_Spiderboss"
-        };
-
-        public static readonly string[] SencefulBuffs =
-        {
-            "SRU_Red",
-            "SRU_Blue",
-            "SRU_Dragon_Water",
-            "SRU_Dragon_Fire",
-            "SRU_Dragon_Earth",
-            "SRU_Dragon_Air",
-            "SRU_Dragon_Elder",
-            "SRU_Baron",
-            "SRU_RiftHerald",
-            "TT_Spiderboss"
+            "SRU_Blue", "SRU_Gromp", "SRU_Murkwolf", "SRU_Razorbeak",
+            "SRU_Red", "SRU_Krug", "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air",
+            "SRU_Dragon_Elder", "Sru_Crab", "SRU_Baron", "SRU_RiftHerald"
         };
 
         public static readonly string[] SmiteNames =
         {
             "summonersmite", "s5_summonersmiteplayerganker", "s5_summonersmiteduel"
         };
+
+        private static readonly int[] SmiteRed = {3715, 1415, 1414, 1413, 1412};
+        private static readonly int[] SmiteBlue = {3706, 1403, 1402, 1401, 1400};
 
         static Utility()
         {
@@ -70,7 +44,7 @@ namespace Simple_Mundo
         public static float SmiteDmgHero(AIHeroClient target)
         {
             return Player.Instance.CalculateDamageOnUnit(target, DamageType.True,
-                390 + Player.Instance.Level * 61);
+                20.0f + Player.Instance.Level * 8.0f);
         }
 
         public static void Initialize()

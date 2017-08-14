@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
@@ -13,11 +14,42 @@ namespace Simple_Janna
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+            GameObject.OnCreate += OnCreate;
+            GameObject.OnDelete += OnDelete;
+            Obj_AI_Base.OnUpdatePosition += OnUpdate;
         }
 
         public static void Initialize()
         {
         }
+
+        public static void OnUpdate(GameObject obj, EventArgs args)
+        {
+            var missile = obj as MissileClient;
+            if (missile?.SpellCaster != null && missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient && ELogic.ProjectileList.Contains(missile))
+            {
+                ELogic.ProjectileList.Remove(missile);
+                ELogic.ProjectileList.Add(missile);
+            }
+        }
+
+        public static void OnCreate(GameObject obj, EventArgs args)
+        {
+            var missile = obj as MissileClient;
+            if (missile?.SpellCaster != null && missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient)
+                ELogic.ProjectileList.Add(missile);
+        }
+
+        public static void OnDelete(GameObject obj, EventArgs args)
+        {
+            var missile = obj as MissileClient;
+            if (missile?.SpellCaster != null && missile.SpellCaster.IsEnemy &&
+                missile.SpellCaster.Type == GameObjectType.AIHeroClient && ELogic.ProjectileList.Contains(missile))
+                ELogic.ProjectileList.Remove(missile);
+        }
+
 
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender,
             Interrupter.InterruptableSpellEventArgs e)

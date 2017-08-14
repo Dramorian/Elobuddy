@@ -1,5 +1,7 @@
 using System;
 using EloBuddy;
+using EloBuddy.SDK;
+using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Rendering;
 using SharpDX;
 using Settings = Simple_Mundo.Config.Draw.DrawMenu;
@@ -10,6 +12,7 @@ namespace Simple_Mundo
     {
         static Events()
         {
+            Gapcloser.OnGapcloser += OnGapCloser;
             Drawing.OnDraw += OnDraw;
         }
 
@@ -25,6 +28,15 @@ namespace Simple_Mundo
                 || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteCombo
                 || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteEnemies)
                 Circle.Draw(Color.Blue, SpellManager.Smite.Range, Player.Instance.Position);
+        }
+
+        public static void OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
+        {
+            if (sender == null || sender.IsAlly || Config.Misc.MiscMenu.GapcloseQ)
+                return;
+
+            if (sender.IsAttackingPlayer || e.End.Distance(Player.Instance) <= 70)
+                SpellManager.Q.Cast(sender);
         }
 
 

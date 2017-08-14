@@ -9,7 +9,7 @@ namespace Simple_Janna
     {
         public static Menu JannaAutoShieldMenu, JannaAutoRMenu;
         private static readonly Menu JannaComboMenu;
-        private static readonly Menu JannaHarrasMenu;
+        private static readonly Menu JannaHarassMenu;
         private static readonly Menu JannaProtectorMenu;
         private static readonly Menu JannaMiscMenu;
         private static readonly Menu JannaDrawingsMenu;
@@ -30,11 +30,11 @@ namespace Simple_Janna
             JannaComboMenu.Add("KillStealW", new CheckBox("KillSteal with W"));
 
 
-            JannaHarrasMenu = jannaMainMenu.AddSubMenu("Harras", "Harras");
-            JannaHarrasMenu.AddLabel("[Harras Settings]");
-            JannaHarrasMenu.Add("HarrasQ", new CheckBox("Use Q"));
-            JannaHarrasMenu.Add("HarrasE", new CheckBox("Use W"));
-            JannaHarrasMenu.Add("HarrasManaSlider", new Slider("Minimum mana to Harras (%):", 40, 1));
+            JannaHarassMenu = jannaMainMenu.AddSubMenu("Harass", "Harass");
+            JannaHarassMenu.AddLabel("[Harass Settings]");
+            JannaHarassMenu.Add("HarassQ", new CheckBox("Use Q"));
+            JannaHarassMenu.Add("HarassE", new CheckBox("Use W"));
+            JannaHarassMenu.Add("HarassManaSlider", new Slider("Minimum mana to Harass (%):", 40, 1));
 
             JannaProtectorMenu = jannaMainMenu.AddSubMenu("Protector", "Protector");
             JannaProtectorMenu.AddLabel("[Protector Settings]");
@@ -89,9 +89,9 @@ namespace Simple_Janna
             JannaDrawingsMenu.AddLabel("[Draw Range Settings]");
             JannaDrawingsMenu.Add("DisableAll", new CheckBox("Disable All Drawings", false));
             JannaDrawingsMenu.Add("DrawQ", new CheckBox("Draw Q"));
-            JannaDrawingsMenu.Add("DrawW", new CheckBox("Draw W", false));
-            JannaDrawingsMenu.Add("DrawE", new CheckBox("Draw E", false));
-            JannaDrawingsMenu.Add("DrawR", new CheckBox("Draw R", false));
+            JannaDrawingsMenu.Add("DrawW", new CheckBox("Draw W"));
+            JannaDrawingsMenu.Add("DrawE", new CheckBox("Draw E"));
+            JannaDrawingsMenu.Add("DrawR", new CheckBox("Draw R"));
         }
 
         //Skin Selector Config
@@ -138,8 +138,8 @@ namespace Simple_Janna
                 case "Combo":
                     return JannaComboMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
 
-                case "Harras":
-                    return JannaHarrasMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
+                case "Harass":
+                    return JannaHarassMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
 
                 case "Protector":
                     return JannaProtectorMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
@@ -161,8 +161,8 @@ namespace Simple_Janna
                 case "Combo":
                     return JannaComboMenu[unqIdentifier].Cast<Slider>().CurrentValue;
 
-                case "Harras":
-                    return JannaHarrasMenu[unqIdentifier].Cast<Slider>().CurrentValue;
+                case "Harass":
+                    return JannaHarassMenu[unqIdentifier].Cast<Slider>().CurrentValue;
 
                 case "Protector":
                     return JannaProtectorMenu[unqIdentifier].Cast<Slider>().CurrentValue;

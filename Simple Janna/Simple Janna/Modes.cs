@@ -54,9 +54,9 @@ namespace Simple_Janna
 
         private static void Harass()
         {
-            if (Program._Player.ManaPercent <= Config.ReturnIntMenu("Harras", "HarrasManaSlider")) return;
-
-            if (!SpellFactory.W.IsReady() || !Config.ReturnBoolMenu("Harras", "HarrasW")) return;
+            if (Program._Player.ManaPercent <= Config.ReturnIntMenu("Harass", "HarassManaSlider")) return;
+        
+            if (!SpellFactory.W.IsReady() || !Config.ReturnBoolMenu("Harass", "HarassW")) return;
             var target = TargetSelector.GetTarget(SpellFactory.W.Range, DamageType.Magical);
             if (target != null)
                 SpellFactory.W.Cast(target);
@@ -64,8 +64,10 @@ namespace Simple_Janna
 
         private static void Flee()
         {
-            if (SpellFactory.W.IsReady())
-                SpellFactory.W.Cast(Program._Player);
+            var target = TargetSelector.GetTarget(SpellFactory.Q.Range, DamageType.Magical);
+
+            if (SpellFactory.Q.IsReady())
+                SpellFactory.Q.Cast(target);
         }
 
         private static void KillSteal()

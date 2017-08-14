@@ -281,6 +281,7 @@ namespace Simple_Mundo
             {
                 private static readonly CheckBox _enablePotion;
                 private static readonly CheckBox _enableKSQ;
+                private static readonly CheckBox _gapcloseQ;
                 private static readonly CheckBox _smartW;
                 private static readonly Slider _minHPPotion;
                 private static readonly Slider _WSdelay;
@@ -292,6 +293,7 @@ namespace Simple_Mundo
                     _enableKSQ = MMenu.Add("KSQ", new CheckBox("Use [Q] on Killable"));
                     _smartW = MMenu.Add("smartW", new CheckBox("Automatic disable [W] (Smart)"));
                     _WSdelay = MMenu.Add("WSdelay", new Slider("Smart [W] Delay (ms)", 0, 0, 500));
+                    _gapcloseQ = MMenu.Add("gapcloseQ", new CheckBox("Use [Q] on enemy gapclose"));
 
 
                     MMenu.AddGroupLabel("Potion Manager");
@@ -303,6 +305,7 @@ namespace Simple_Mundo
 
 
                 public static bool EnableKSQ => _enableKSQ.CurrentValue;
+                public static bool GapcloseQ => _gapcloseQ.CurrentValue;
 
                 public static bool SmartW => _smartW.CurrentValue;
 

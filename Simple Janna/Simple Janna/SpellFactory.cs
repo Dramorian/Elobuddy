@@ -34,15 +34,15 @@ namespace Simple_Janna
         }
 
 
-        public static void CastE()
-        {
-            //var allies = EntityManager.Heroes.Allies.Where(x => !x.IsMe && Program._Player.IsInRange(x, SpellFactory.E.Range));
-            if (Config.ReturnBoolMenu("Protector", "SupportMode") &&
-                Program._Player.CountAllyChampionsInRange(800) >= 2) return;
-            var target = TargetSelector.GetTarget(E.Range, DamageType.Magical);
-            if (target.IsValidTarget(E.Range) && !target.IsZombie && !target.IsInvulnerable)
-                E.Cast(target);
-        }
+//        public static void CastE()
+//        {
+//            //var allies = EntityManager.Heroes.Allies.Where(x => !x.IsMe && Program._Player.IsInRange(x, SpellFactory.E.Range));
+//            if (Config.ReturnBoolMenu("Protector", "SupportMode") &&
+//                Program._Player.CountAllyChampionsInRange(800) >= 2) return;
+//            var target = TargetSelector.GetTarget(E.Range, DamageType.Magical);
+//            if (target.IsValidTarget(E.Range) && !target.IsZombie && !target.IsInvulnerable)
+//                E.Cast(target);
+//        }
 
         public static void CastR()
         {
