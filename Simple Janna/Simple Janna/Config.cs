@@ -52,14 +52,6 @@ namespace Simple_Janna
             JannaAutoShieldMenu.AddLabel("[Auto Shield Settings]");
             JannaAutoShieldMenu.Add("AShield", new CheckBox("Enable Auto Shield"));
             JannaAutoShieldMenu.Add("AShieldMana", new Slider("Minimum Mana for Auto (E)", 50, 1));
-            JannaAutoShieldMenu.AddLabel("[Protect Against Spells]");
-            foreach (var enemy in EntityManager.Heroes.Enemies)
-                if (SpellProtectDB.AvoidSpells.ContainsKey(enemy.ChampionName))
-                {
-                    JannaAutoShieldMenu.AddLabel(enemy.ChampionName);
-                    foreach (var xd in SpellProtectDB.AvoidSpells[enemy.ChampionName])
-                        JannaAutoShieldMenu.Add(xd, new CheckBox(xd, false));
-                }
 
             JannaAutoRMenu = jannaMainMenu.AddSubMenu("Auto R", "Auto R");
             JannaAutoRMenu.AddLabel("[Auto Ulti(R) Settings]");

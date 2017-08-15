@@ -18,6 +18,7 @@ namespace Simple_Janna
 
         private static void Game_OnTick(EventArgs args)
         {
+            ELogic.TryToE();
             if (Program._Player.IsDead || Program._Player.HasBuff("Recall") ||
                 Program._Player.IsInFountainRange()) return;
 
@@ -55,7 +56,7 @@ namespace Simple_Janna
         private static void Harass()
         {
             if (Program._Player.ManaPercent <= Config.ReturnIntMenu("Harass", "HarassManaSlider")) return;
-        
+
             if (!SpellFactory.W.IsReady() || !Config.ReturnBoolMenu("Harass", "HarassW")) return;
             var target = TargetSelector.GetTarget(SpellFactory.W.Range, DamageType.Magical);
             if (target != null)
@@ -113,15 +114,17 @@ namespace Simple_Janna
                 {
                     if (!ally.IsInFountainRange() && Program._Player.HealthPercent <= Config._AutoRJannaHp &&
                         ally.CountEnemyChampionsInRange(800) > 0)
-                        SpellFactory.R.Cast(Program._Player);
+                        Orbwalker.DisableAttacking = true;
+                    Orbwalker.DisableMovement = true;
+                    SpellFactory.R.Cast(Program._Player);
                 }
                 else if (!ally.IsMe && Config._AutoR(ally.ChampionName))
                 {
                     if (!ally.IsInFountainRange() && ally.HealthPercent <= Config._AutoRHp(ally.ChampionName) &&
                         ally.CountEnemyChampionsInRange(800) > 0)
-                        SpellFactory.R.Cast(ally);
-                    Orbwalker.DisableAttacking = true;
+                        Orbwalker.DisableAttacking = true;
                     Orbwalker.DisableMovement = true;
+                    SpellFactory.R.Cast(ally);
                 }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Menu.Values;
 using UnsignedEvade;
 
 namespace Simple_Janna
@@ -10,7 +11,7 @@ namespace Simple_Janna
         public static List<MissileClient> ProjectileList = new List<MissileClient>();
         public static List<SpellInfo> EnemyProjectileInformation = new List<SpellInfo>();
 
-      /*  public static void TryToE()
+        public static void TryToE()
             //credit to Chaos for this logic if about to be hit!
         {
             if (SpellFactory.E.IsReady() && SpellFactory.E.IsLearned)
@@ -18,14 +19,13 @@ namespace Simple_Janna
                 foreach (var info in EnemyProjectileInformation)
                 foreach (var client in EntityManager.Heroes.Allies)
                     if (ShouldShield(missile, info, client) && CollisionCheck(missile, info, client))
-                        if (info.ChannelType == SpellDatabase.ChannelType.None && SpellFactory.E.IsReady()
-                            && Extension.GetCheckBoxValue(Config._AShield, client.ChampionName))
-
+                        if (info.ChannelType == SpellDatabase.ChannelType.None && SpellFactory.E.IsReady() &&
+                            Config.JannaAutoShieldMenu[client.ChampionName].Cast<CheckBox>().CurrentValue)
                             SpellFactory.E.Cast(client);
                         else if (info.ChannelType != SpellDatabase.ChannelType.None && SpellFactory.E.IsReady()
-                                 && Extension.GetCheckBoxValue(Meniu.Shield, client.ChampionName))
+                                 && Config.JannaAutoShieldMenu[client.ChampionName].Cast<CheckBox>().CurrentValue)
                             SpellFactory.E.Cast(client);
-        }*/
+        }
 
 
         public static bool ShouldShield(MissileClient missile, SpellInfo info, AIHeroClient client)

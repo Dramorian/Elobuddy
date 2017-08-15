@@ -19,7 +19,7 @@ namespace Simple_Janna
             if (SpellFactory.Q.IsReady() && t.IsValidTarget(SpellFactory.Q.Range))
                 dmg += Program._Player.GetSpellDamage(t, SpellSlot.Q);
             if (SpellFactory.W.IsReady() && t.IsValidTarget(SpellFactory.W.Range))
-                dmg += Program._Player.GetSpellDamage(t, SpellSlot.E);
+                dmg += Program._Player.GetSpellDamage(t, SpellSlot.W);
 
             return dmg;
         }

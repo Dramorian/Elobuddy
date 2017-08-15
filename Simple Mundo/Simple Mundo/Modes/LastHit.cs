@@ -16,7 +16,7 @@ namespace Simple_Mundo.Modes
         public override void Execute()
         {
             // TODO: Add lasthit logic here
-            if (Settings.UseQ)
+            if (Settings.UseQ && Q.IsReady())
             {
                 var minionsQ =
                     EntityManager.MinionsAndMonsters.GetLaneMinions()
@@ -26,9 +26,8 @@ namespace Simple_Mundo.Modes
                                 m.IsValidTarget(SpellManager.Q.Range) &&
                                 m.Health <= Player.Instance.GetSpellDamage(m, SpellSlot.Q));
 
-                if (minionsQ != null)
-
-                    SpellManager.Q.Cast(minionsQ);
+                if (minionsQ == null) return;
+                Q.Cast(minionsQ);
             }
         }
     }

@@ -45,6 +45,7 @@ namespace Simple_Mundo.Modes
                         Program.WEnable();
                 }
             }, Settings2.WSDelay);
+            
 
             #endregion
 
@@ -53,7 +54,7 @@ namespace Simple_Mundo.Modes
             if (Settings.UseE && E.IsReady())
             {
                 var targetE = TargetSelector.GetTarget(E.Range, DamageType.Physical);
-                if (targetE != null && targetE.IsValid)
+                if (targetE != null && targetE.IsValidTarget(E.Range))
                     E.Cast();
             }
 

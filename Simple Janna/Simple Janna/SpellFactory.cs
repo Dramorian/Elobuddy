@@ -9,7 +9,7 @@ namespace Simple_Janna
     {
         static SpellFactory()
         {
-            Q = new Spell.Skillshot(SpellSlot.Q, 1700, SkillShotType.Linear, 0, 2000, 125)
+            Q = new Spell.Skillshot(SpellSlot.Q, 830, SkillShotType.Linear, 0, 2000, 125)
                 {AllowedCollisionCount = int.MaxValue};
             W = new Spell.Targeted(SpellSlot.W, 600);
             E = new Spell.Targeted(SpellSlot.E, 800);
