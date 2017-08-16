@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Menu.Values;
 using Settings = Simple_Mundo.Config.Misc.MiscMenu;
 using Settings2 = Simple_Mundo.Config.Combo.ComboMenu;
@@ -25,24 +26,21 @@ namespace Simple_Mundo.Modes
 
             if (Settings.EnableKSQ && Q.IsReady())
             {
-                var ksQ = EntityManager.Heroes.Enemies.Where(e => e.IsValidTarget(SpellManager.Q.Range) && !e.IsDead)
-                    .FirstOrDefault(e => Player.Instance.GetSpellDamage(e, SpellSlot.Q) > e.TotalShieldHealth());
+                var ksQ = EntityManager.Heroes.Enemies
+                    .FirstOrDefault(
+                        e => e.IsValidTarget(SpellManager.Q.Range) &&
+                             !e.IsDead && !e.IsZombie && e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
 
-                if (ksQ == null || !ksQ.IsValidTarget(SpellManager.Q.Range)) return;
-                Q.Cast();
-                /*  var targetQ = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
 
-                  if (targetQ == null)
-                      return;
-
-                  var qpred = Q.GetPrediction(targetQ);
-
-                  if (targetQ.Health <= Player.Instance.GetSpellDamage(targetQ, SpellSlot.Q) &&
-                      qpred.HitChance >= HitChance.High)
-                  {
-                      Q.Cast(qpred.CastPosition);
-                      return;
-                  }*/
+                if (ksQ != null)
+                {
+                    var qpred = Q.GetPrediction(ksQ);
+                    if (qpred.HitChance >= HitChance.High)
+                    {
+                        Q.Cast(qpred.CastPosition);
+                        return;
+                    }
+                }
             }
 
             #endregion
@@ -86,7 +84,7 @@ namespace Simple_Mundo.Modes
             if (HasSmite)
             {
                 //Red Smite Combo
-                if (Config.Smite.SmiteMenu.SmiteCombo && Smite.Name.Equals("s5_summonersmiteduel") &&
+                if (Config.Smite.SmiteMenu.SmiteCombo && Smite.Name.Equals("s7_summonersmiteduel") &&
                     Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo) && Smite.IsReady())
                     foreach (
                         var smiteTarget in
@@ -98,8 +96,9 @@ namespace Simple_Mundo.Modes
                         Smite.Cast(smiteTarget);
                         return;
                     }
+
                 // Blue Smite KS
-                if (Config.Smite.SmiteMenu.SmiteEnemies && Smite.Name.Equals("s5_summonersmiteplayerganker") &&
+                if (Config.Smite.SmiteMenu.SmiteEnemies && Smite.Name.Equals("s7_summonersmiteplayerganker") &&
                     Smite.IsReady())
                 {
                     var smiteKs =

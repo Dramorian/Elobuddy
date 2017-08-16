@@ -20,14 +20,13 @@ namespace Simple_Mundo.Modes
             {
                 var minionsQ =
                     EntityManager.MinionsAndMonsters.GetLaneMinions()
-                        .OrderByDescending(m => m.Health)
-                        .FirstOrDefault(
-                            m =>
-                                m.IsValidTarget(SpellManager.Q.Range) &&
-                                m.Health <= Player.Instance.GetSpellDamage(m, SpellSlot.Q));
-
-                if (minionsQ == null) return;
-                Q.Cast(minionsQ);
+                        .Where(a =>
+                            a.IsValidTarget(Q.Range) && a.Health < Player.Instance.GetSpellDamage(a, SpellSlot.Q)
+                            && a.Distance(Player.Instance.ServerPosition) > Player.Instance.GetAutoAttackRange())
+                        .OrderByDescending(a => a.MaxHealth)
+                        .FirstOrDefault();
+                if (minionsQ != null)
+                    Q.Cast(minionsQ);
             }
         }
     }

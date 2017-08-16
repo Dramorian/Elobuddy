@@ -21,7 +21,7 @@ namespace Simple_Mundo
 
         public static readonly string[] SmiteNames =
         {
-            "summonersmite", "s5_summonersmiteplayerganker", "s5_summonersmiteduel"
+            "summonersmite", "s7_summonersmiteplayerganker", "s7_summonersmiteduel"
         };
 
         private static readonly int[] SmiteRed = {3715, 1415, 1414, 1413, 1412};

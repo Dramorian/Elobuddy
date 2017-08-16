@@ -1,7 +1,5 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using Settings = Simple_Mundo.Config.Combo.ComboMenu;
-using Settings2 = Simple_Mundo.Config.Misc.MiscMenu;
 
 namespace Simple_Mundo.Modes
 {

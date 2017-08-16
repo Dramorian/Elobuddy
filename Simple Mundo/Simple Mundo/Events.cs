@@ -23,11 +23,11 @@ namespace Simple_Mundo
                 Circle.Draw(Color.Green, SpellManager.Q.Range, Player.Instance.Position);
 
 
-            if (!SpellManager.HasSmite()) return;
-            if (Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteToggle
-                || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteCombo
-                || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteEnemies)
-                Circle.Draw(Color.Blue, SpellManager.Smite.Range, Player.Instance.Position);
+            if (SpellManager.HasSmite())
+                if (Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteToggle
+                    || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteCombo
+                    || Settings.DrawSmite && Config.Smite.SmiteMenu.SmiteEnemies)
+                    Circle.Draw(Color.Blue, SpellManager.Smite.Range, Player.Instance.Position);
         }
 
         public static void OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
@@ -35,8 +35,9 @@ namespace Simple_Mundo
             if (sender == null || sender.IsAlly || Config.Misc.MiscMenu.GapcloseQ)
                 return;
 
-            if (sender.IsAttackingPlayer || e.End.Distance(Player.Instance) <= 70)
-                SpellManager.Q.Cast(sender);
+            var gapclosepred = SpellManager.Q.GetPrediction(sender);
+            if (SpellManager.Q.IsReady() && SpellManager.Q.IsInRange(sender) && e.End.Distance(Player.Instance) <= 300)
+                SpellManager.Q.Cast(gapclosepred.CastPosition);
         }
 
 
