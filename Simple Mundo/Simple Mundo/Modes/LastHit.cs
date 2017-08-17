@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Enumerations;
 using Settings = Simple_Mundo.Config.LastHit.LastHitMenu;
 
 namespace Simple_Mundo.Modes
 {
     public sealed class LastHit : ModeBase
     {
+        public static AIHeroClient _Player => ObjectManager.Player;
         public override bool ShouldBeExecuted()
         {
             // Only execute this mode when the orbwalker is on lasthit mode
@@ -19,14 +21,18 @@ namespace Simple_Mundo.Modes
             if (Settings.UseQ && Q.IsReady())
             {
                 var minionsQ =
-                    EntityManager.MinionsAndMonsters.GetLaneMinions()
-                        .Where(a =>
-                            a.IsValidTarget(Q.Range) && a.Health < Player.Instance.GetSpellDamage(a, SpellSlot.Q)
-                            && a.Distance(Player.Instance.ServerPosition) > Player.Instance.GetAutoAttackRange())
-                        .OrderByDescending(a => a.MaxHealth)
-                        .FirstOrDefault();
+                    EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position,
+                            Q.Range)
+                        .FirstOrDefault(m =>
+                            m.Distance(_Player) <= Q.Range &&
+                            m.Health <= _Player.GetSpellDamage(m, SpellSlot.Q) &&
+                            m.IsValidTarget());
                 if (minionsQ != null)
-                    Q.Cast(minionsQ);
+                {
+                    var qPred = Q.GetPrediction(minionsQ);
+                    if (qPred.HitChance >= HitChance.High)
+                        Q.Cast(qPred.CastPosition);
+                }
             }
         }
     }

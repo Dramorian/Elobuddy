@@ -28,8 +28,8 @@ namespace Simple_Mundo.Modes
             {
                 var ksQ = EntityManager.Heroes.Enemies
                     .FirstOrDefault(
-                        e => e.IsValidTarget(SpellManager.Q.Range) &&
-                             !e.IsDead && !e.IsZombie && e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
+                        e => e.IsValidTarget() &&
+                             !e.IsDead && !e.IsZombie && !e.IsInvulnerable && e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
 
 
                 if (ksQ != null)

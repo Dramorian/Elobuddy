@@ -165,7 +165,7 @@ namespace Simple_Mundo
                     JMenu.AddGroupLabel("JungleClear Options");
                     _useQ = JMenu.Add("jungleUseQ", new CheckBox("Use Q"));
                     _useW = JMenu.Add("jungleUseW", new CheckBox("Use W"));
-                    _useE = JMenu.Add("jungleUseW", new CheckBox("Use E"));
+                    _useE = JMenu.Add("jungleUseE", new CheckBox("Use E"));
                 }
 
 
