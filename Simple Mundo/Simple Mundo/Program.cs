@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using EloBuddy;
 using EloBuddy.SDK.Events;
 
@@ -31,8 +32,12 @@ namespace Simple_Mundo
 
             // Listen to events we need
 
-            Chat.Print("<font color='#FA5858'>Simple Mundo loaded</font>");
-            Chat.Print("<font color='#FA5858'>Good luck and have fun</font>");
+
+            Chat.Print("Simple Mundo loaded", Color.Cyan);
+            Chat.Print("Good luck and have fun", Color.Cyan);
+
+            if (!SpellManager.HasSmite())
+                Chat.Print("No smite detected - unloading Smite.", Color.Red);
         }
 
         public static bool WStatus()
