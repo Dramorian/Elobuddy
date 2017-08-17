@@ -16,7 +16,9 @@ namespace Simple_Mundo
         {
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
             Menu.AddGroupLabel("Simple Mundo");
-            Menu.AddLabel("Report any suggestions/problems to the forum post!");
+            Menu.AddLabel("Report any suggestions/problems to the forum thread!");
+            Menu.AddGroupLabel("Credits:");
+            Menu.AddLabel("Hellsing, Zpitty, Taazuma");
 
 
             Combo.Initialize();
