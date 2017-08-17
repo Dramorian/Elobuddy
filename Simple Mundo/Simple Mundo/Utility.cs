@@ -24,8 +24,8 @@ namespace Simple_Mundo
             "summonersmite", "s5_summonersmiteplayerganker", "s5_summonersmiteduel"
         };
 
-        public static int[] SmiteRed { get; } = {3715, 1415, 1414, 1413, 1412};
-        public static int[] SmiteBlue { get; } = {3706, 1403, 1402, 1401, 1400};
+        private static readonly int[] SmiteRed = {3715, 1415, 1414, 1413, 1412};
+        private static readonly int[] SmiteBlue = {3706, 1403, 1402, 1401, 1400};
 
         static Utility()
         {
