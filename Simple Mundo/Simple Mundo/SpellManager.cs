@@ -22,7 +22,9 @@ namespace Simple_Mundo
                 return;
             }
             if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner2).Name))
+            {
                 Smite = new Spell.Targeted(SpellSlot.Summoner2, 570);
+            }
         }
 
         // You will need to edit the types of spells you have for each champ as they
