@@ -13,7 +13,7 @@ namespace Simple_Mundo
             Q = new Spell.Skillshot(SpellSlot.Q, 1050, SkillShotType.Linear, 250, 2000, 60)
                 {AllowedCollisionCount = 0};
             W = new Spell.Active(SpellSlot.W, 162);
-            E = new Spell.Active(SpellSlot.E, 125);
+            E = new Spell.Active(SpellSlot.E, 150);
             R = new Spell.Active(SpellSlot.R);
 
             if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner1).Name))
