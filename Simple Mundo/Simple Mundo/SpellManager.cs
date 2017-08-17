@@ -16,12 +16,12 @@ namespace Simple_Mundo
             E = new Spell.Active(SpellSlot.E, 150);
             R = new Spell.Active(SpellSlot.R);
 
-            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner1).Name))
+            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner1).Name.ToLower()))
             {
                 Smite = new Spell.Targeted(SpellSlot.Summoner1, 570);
                 return;
             }
-            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner2).Name))
+            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner2).Name.ToLower()))
             {
                 Smite = new Spell.Targeted(SpellSlot.Summoner2, 570);
             }

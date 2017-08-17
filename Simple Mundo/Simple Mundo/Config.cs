@@ -18,7 +18,7 @@ namespace Simple_Mundo
             Menu.AddGroupLabel("Simple Mundo");
             Menu.AddLabel("Report any suggestions/problems to the forum thread!");
             Menu.AddGroupLabel("Credits:");
-            Menu.AddLabel("Hellsing, Zpitty, Taazuma");
+            Menu.AddLabel("Hellsing, Zpitty, Taazuma, hazanpro");
 
 
             Combo.Initialize();
@@ -363,7 +363,11 @@ namespace Simple_Mundo
                     SMenu.AddSeparator();
                     SMenu.AddGroupLabel("Smiteable Monsters");
                     SMenu.Add("SRU_Baron", new CheckBox("Baron"));
-                    SMenu.Add("SRU_Dragon", new CheckBox("Dragon"));
+                    SMenu.Add("SRU_Dragon_Water", new CheckBox("Water Dragon"));
+                    SMenu.Add("SRU_Dragon_Fire", new CheckBox("Fire Dragon"));
+                    SMenu.Add("SRU_Dragon_Earth", new CheckBox("Earth Dragon"));
+                    SMenu.Add("SRU_Dragon_Air", new CheckBox(" Air Dragon"));
+                    SMenu.Add("SRU_Dragon_Elder", new CheckBox("Elder Dragon"));
                     SMenu.Add("SRU_Red", new CheckBox("Red"));
                     SMenu.Add("SRU_Blue", new CheckBox("Blue"));
                     SMenu.Add("SRU_Gromp", new CheckBox("Gromp"));

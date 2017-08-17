@@ -36,8 +36,7 @@ namespace Simple_Mundo
             Chat.Print("Simple Mundo loaded", Color.Cyan);
             Chat.Print("Good luck and have fun", Color.Cyan);
 
-            if (!SpellManager.HasSmite())
-                Chat.Print("No smite detected - unloading Smite.", Color.Red);
+
         }
 
         public static bool WStatus()

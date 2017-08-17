@@ -84,7 +84,7 @@ namespace Simple_Mundo.Modes
             if (HasSmite)
             {
                 //Red Smite Combo
-                if (Config.Smite.SmiteMenu.SmiteCombo && Smite.Name.Equals("s7_summonersmiteduel") &&
+                if (Config.Smite.SmiteMenu.SmiteCombo && Smite.Name.Equals("s5_summonersmiteduel") &&
                     Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo) && Smite.IsReady())
                     foreach (
                         var smiteTarget in
@@ -98,7 +98,7 @@ namespace Simple_Mundo.Modes
                     }
 
                 // Blue Smite KS
-                if (Config.Smite.SmiteMenu.SmiteEnemies && Smite.Name.Equals("s7_summonersmiteplayerganker") &&
+                if (Config.Smite.SmiteMenu.SmiteEnemies && Smite.Name.Equals("s5_summonersmiteplayerganker") &&
                     Smite.IsReady())
                 {
                     var smiteKs =
