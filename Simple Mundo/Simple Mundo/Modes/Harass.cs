@@ -21,10 +21,8 @@ namespace Simple_Mundo.Modes
             if (Settings.UseQ && Player.Instance.HealthPercent > Settings.Health && Q.IsReady())
             {
                 var targetQ = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
-                if (targetQ.IsInvulnerable || targetQ.MagicImmune)
-                    return;
 
-                if (targetQ != null && targetQ.IsValid)
+                if (targetQ != null )
                 {
                     var predQ = Q.GetPrediction(targetQ);
                     if (predQ.HitChance >= HitChance.High)

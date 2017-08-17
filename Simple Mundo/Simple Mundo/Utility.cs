@@ -14,9 +14,10 @@ namespace Simple_Mundo
 
         public static readonly string[] MonstersNames =
         {
-            "SRU_Blue", "SRU_Gromp", "SRU_Murkwolf", "SRU_Razorbeak",
-            "SRU_Red", "SRU_Krug", "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air",
-            "SRU_Dragon_Elder", "Sru_Crab", "SRU_Baron", "SRU_RiftHerald"
+            "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Earth", "SRU_Dragon_Air", "SRU_Dragon_Elder", "Sru_Crab",
+            "SRU_Baron", "SRU_RiftHerald",
+            "SRU_Red", "SRU_Blue", "SRU_Krug", "SRU_Gromp", "SRU_Murkwolf", "SRU_Razorbeak",
+            "TT_Spiderboss", "TTNGolem", "TTNWolf", "TTNWraith"
         };
 
         public static readonly string[] SmiteNames =
