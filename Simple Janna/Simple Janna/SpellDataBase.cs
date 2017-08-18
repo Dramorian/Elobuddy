@@ -40,6 +40,21 @@ namespace UnsignedEvade
                 Width = 35,
                 CollisionCount = 0
             },
+            new SpellInfo()
+            {
+                ChampionName = "Aatrox",
+                SpellName = "AatroxQ",
+                MissileName = "AatroxQ",
+                ProjectileType = ProjectileType.CircularSkillshot,
+                CCType = BuffType.Knockup,
+                Slot = SpellSlot.E,
+                Range = 1075,
+                Delay = 250,
+                MissileSpeed = 1250,
+                Width = 35,
+                CollisionCount = 0
+            },
+
             #endregion
             #region Ahri
             new SpellInfo()
@@ -176,6 +191,36 @@ namespace UnsignedEvade
                 MissileSpeed = 1600,
                 Width = 130,
                 CollisionCount = 1
+            },
+            #endregion
+            #region Aurelion Sol
+            new SpellInfo()
+            {
+                ChampionName = "AurelionSol",
+                SpellName = "AurelionSolQ",
+                MissileName = "AurelionSolQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Stun,
+                Slot = SpellSlot.Q,
+                Range = 1500,
+                Delay = 250,
+                MissileSpeed = 850,
+                Width = 180,
+                CollisionCount = 0
+            },
+            new SpellInfo()
+            {
+                ChampionName = "AurelionSol",
+                SpellName = "AurelionSolR",
+                MissileName = "AurelionSolRBeamMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Stun,
+                Slot = SpellSlot.Q,
+                Range = 1420,
+                Delay = 300,
+                MissileSpeed = 4600,
+                Width = 120,
+                CollisionCount = 0
             },
             #endregion
             //Could Stop Azir Ult
@@ -387,6 +432,31 @@ namespace UnsignedEvade
             },
             #endregion
             #region Darius
+            new SpellInfo()
+            {
+                ChampionName = "Darius",
+                SpellName = "DariusCleave",
+                ProjectileType = ProjectileType.CircularSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 425,
+                Delay = 750,
+                Width = 425,
+                CollisionCount = 0
+            },
+            new SpellInfo()
+            {
+                ChampionName = "Darius",
+                SpellName = "DariusGrabCone",
+                MissileName = "DariusGrabCone",
+                ProjectileType = ProjectileType.ConeSkillshot,
+                CCType = BuffType.Stun,
+                Slot = SpellSlot.E,
+                Range = 1075,
+                Delay = 250,
+                MissileSpeed = 1250,
+                Width = 35,
+                CollisionCount = 0
+            },
             #endregion
             #region Diana
             new SpellInfo()
@@ -489,8 +559,20 @@ namespace UnsignedEvade
                 CollisionCount = 0
             },
             #endregion
-            //Need to add Elise Cocoon
             #region Elise
+            new SpellInfo()
+            {
+                ChampionName = "Elise",
+                SpellName = "EliseHumanE",
+                MissileName = "EliseHumanE",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 1100,
+                Delay = 250,
+                MissileSpeed = 1600,
+                Width = 55,
+                CollisionCount = 1
+            },
             #endregion
             //Need to add Evelynn Q
             #region Evelynn
@@ -606,22 +688,23 @@ namespace UnsignedEvade
                 ProjectileType = ProjectileType.LinearSkillshot,
                 CCType = BuffType.Slow,
                 Slot = SpellSlot.Q,
-                Range = 900,
+                Range = 1040,
                 Delay = 250,
-                MissileSpeed = 1300,
-                Width = 200,
+                MissileSpeed = 1200,
+                Width = 235,
                 CollisionCount = 0
             },
             new SpellInfo()
             {
                 ChampionName = "Galio",
-                SpellName = "GalioRighteousGust",
-                MissileName = "GalioRighteousGust",
+                SpellName = "GalioJusticePunch",
+                MissileName = "GalioJusticePunch",
                 ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Knockup,
                 Slot = SpellSlot.E,
-                Range = 1200,
+                Range = 650,
                 Delay = 250,
-                MissileSpeed = 1200,
+                MissileSpeed = 1300,
                 Width = 120,
                 CollisionCount = 0
             },
@@ -745,10 +828,10 @@ namespace UnsignedEvade
                 CollisionCount = 0
             },
             #endregion
-            //Need to add Hecarim Ult
+            // TODO: Need to add Hecarim Ult
             #region Hecarim
             #endregion
-            //Need to add Heimerdinger Ulted W/E. Possible fix on W
+            // TODO: Need to add Heimerdinger Ulted W/E. Possible fix on W
             #region Heimerdinger
             new SpellInfo()
             {
@@ -793,6 +876,22 @@ namespace UnsignedEvade
                 MissileSpeed = 1600,
                 Width = 65,
                 CollisionCount = 0
+            },
+            #endregion
+            #region Ivern
+            new SpellInfo()
+            {
+                ChampionName = "Ivern",
+                SpellName = "IvernQ",
+                MissileName = "IvernQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Snare,
+                Slot = SpellSlot.Q,
+                Range = 1150,
+                Delay = 250,
+                MissileSpeed = 1300,
+                Width = 65,
+                CollisionCount = 1
             },
             #endregion
             #region Janna
@@ -1001,7 +1100,7 @@ namespace UnsignedEvade
             #endregion
             #region Karthus
             #endregion
-            //Need to add Kassadin Q
+            //TODO: Need to add Kassadin Q
             #region Kassadin
             #endregion
             #region Katarina
@@ -1083,6 +1182,36 @@ namespace UnsignedEvade
             #endregion
             //Need to add Kindred Q and Kindred E
             #region Kindred
+            #endregion
+            #region Kled
+            new SpellInfo()
+            {
+                ChampionName = "Kled",
+                SpellName = "KledRiderQ",
+                MissileName = "KledRiderQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 700,
+                Delay = 250,
+                MissileSpeed = 3000,
+                Width = 40,
+                CollisionCount = 1
+            },
+            new SpellInfo()
+            {
+                ChampionName = "Kled",
+                SpellName = "KledQ",
+                MissileName = "KledQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Stun,
+                Slot = SpellSlot.Q,
+                Range = 800,
+                Delay = 250,
+                MissileSpeed = 1600,
+                Width = 40,
+                CollisionCount = 0
+            },
+
             #endregion
             #region KogMaw
             new SpellInfo()
@@ -1329,7 +1458,7 @@ namespace UnsignedEvade
                 Range = 1100,
                 Delay = 250,
                 MissileSpeed = 1300,
-                Width = 275,
+                Width = 330,
                 CollisionCount = 0
             },
             #endregion
@@ -1352,6 +1481,19 @@ namespace UnsignedEvade
             #region Malzahar
             #endregion
             #region Maokai
+            new SpellInfo()
+            { 
+            ChampionName = "Maokai",
+            SpellName = "MaokaiTrunkLine",
+            ProjectileType = ProjectileType.LinearSkillshot,
+            CCType = BuffType.Knockback,
+            Slot = SpellSlot.Q,
+            Range = 600,
+            Delay = 250,
+            MissileSpeed = 1000,
+            Width = 110,
+            CollisionCount = 0
+            },
             #endregion
             #region MasterYi
             #endregion
@@ -1484,7 +1626,7 @@ namespace UnsignedEvade
                 ProjectileType = ProjectileType.LinearSkillshot,
                 CCType = BuffType.Stun,
                 Slot = SpellSlot.Q,
-                Range = 1250,
+                Range = 1150,
                 Delay = 250,
                 MissileSpeed = 2000,
                 Width = 90,
@@ -1508,6 +1650,19 @@ namespace UnsignedEvade
             #endregion
             //Need to add Nocturne Q
             #region Nocturne
+            new SpellInfo()
+            {
+                ChampionName = "Nocturne",
+                SpellName = "NocturneDuskbringer",
+                MissileName = "NocturneDuskbringer",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 1200,
+                Delay = 250,
+                MissileSpeed = 1400,
+                Width = 60,
+                CollisionCount = 0
+            },
             #endregion
             #region Nunu
             new SpellInfo()
@@ -1531,6 +1686,17 @@ namespace UnsignedEvade
             #endregion
             //Need to add Pantheon Q/E
             #region Pantheon
+            new SpellInfo()
+            {
+                ChampionName = "Pantheon",
+                SpellName = "PantheonE",
+                ProjectileType = ProjectileType.ConeSkillshot,
+                Slot = SpellSlot.E,
+                Range = 600,
+                Delay = 1000,
+                Width = 80,
+                CollisionCount = 0
+            },
             #endregion
             #region Poppy
             new SpellInfo()
@@ -1611,6 +1777,18 @@ namespace UnsignedEvade
                 MissileSpeed = 1500,
                 Width = 70,
                 CollisionCount = 1
+            },
+            new SpellInfo()
+            {
+                ChampionName = "Rengar",
+                SpellName = "RengarQ",
+                MissileName = "RengarQ",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 500,
+                Delay = 250,
+                Width = 150,
+                CollisionCount = 0
             },
             #endregion
             #region Riven
@@ -1915,6 +2093,21 @@ namespace UnsignedEvade
                 CollisionCount = 0
             },
             #endregion
+            #region Taliyah
+            new SpellInfo()
+            {
+                ChampionName = "Taliyah",
+                SpellName = "TaliyahQ",
+                MissileName = "TaliyahQMis",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 1000,
+                Delay = 250,
+                MissileSpeed = 1450,
+                Width = 100,
+                CollisionCount = 1
+            },
+            #endregion
             //Add Talon R
             #region Talon
             new SpellInfo()
@@ -1963,9 +2156,9 @@ namespace UnsignedEvade
             new SpellInfo()
             {
                 ChampionName = "Taric",
-                SpellName = "TaricDazzleStun",
-                MissileName = "TaricDazzleStunMissile",
-                ProjectileType = ProjectileType.LockOnProjectile,
+                SpellName = "TaricE",
+                MissileName = "TaricEMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
                 CCType = BuffType.Stun,
                 Slot = SpellSlot.E,
                 Range = 625,
@@ -1974,20 +2167,7 @@ namespace UnsignedEvade
                 Width = 80,
                 CollisionCount = 0
             },
-            new SpellInfo()
-            {
-                ChampionName = "Taric",
-                SpellName = "Dazzle",
-                MissileName = "Dazzle",
-                ProjectileType = ProjectileType.LockOnProjectile,
-                CCType = BuffType.Stun,
-                Slot = SpellSlot.E,
-                Range = 625,
-                Delay = 250,
-                MissileSpeed = 1400,
-                Width = 80,
-                CollisionCount = 0
-            },
+           
             #endregion
             #region Teemo
             new SpellInfo()
@@ -2102,34 +2282,10 @@ namespace UnsignedEvade
             #endregion
             #region Udyr
             #endregion
-            #region Urgot
-            new SpellInfo()
-            {
-                ChampionName = "Urgot",
-                SpellName = "UrgotHeatseekingLineMissile",
-                MissileName = "UrgotHeatseekingLineMissile",
-                ProjectileType = ProjectileType.LinearSkillshot,
-                Slot = SpellSlot.Q,
-                Range = 1000,
-                Delay = 125,
-                MissileSpeed = 1600,
-                Width = 60,
-                CollisionCount = 1
-            },
-            new SpellInfo()
-            {
-                ChampionName = "Urgot",
-                SpellName = "UrgotPlasmaGrenade",
-                MissileName = "UrgotPlasmaGrenadeBoom",
-                ProjectileType = ProjectileType.CircularSkillshot,
-                Slot = SpellSlot.E,
-                Range = 1100,
-                Delay = 250,
-                MissileSpeed = 1500,
-                Width = 60,
-                CollisionCount = 1
-            },
-            #endregion
+            //TODO: add updated spells
+            #region Urgot 
+          
+            #endregion 
             #region Varus
             new SpellInfo()
             {
@@ -2279,6 +2435,7 @@ namespace UnsignedEvade
                 CollisionCount = 0
             },
             #endregion
+//TODO: add vlad spells
             #region Vladimir
             #endregion
             #region Volibear
@@ -2288,6 +2445,30 @@ namespace UnsignedEvade
             #region Wukong
             #endregion
             #region Xerath
+            new SpellInfo()
+            {
+                ChampionName = "Xerath",
+                SpellName = "XerathArcanopulse2",
+                MissileName = "XerathArcanopulse2",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 1525,
+                Delay = 250,
+                Width = 70,
+                CollisionCount = 0
+            },
+            new SpellInfo()
+            {
+                ChampionName = "Xerath",
+                SpellName = "XerathArcaneBarrage2",
+                MissileName = "XerathArcaneBarrage2",
+                ProjectileType = ProjectileType.CircularSkillshot,
+                Slot = SpellSlot.W,
+                Range = 1000,
+                Delay = 750,
+                Width = 280,
+                CollisionCount = 0
+            },
             new SpellInfo()
             {
                 ChampionName = "Xerath",
@@ -2301,6 +2482,21 @@ namespace UnsignedEvade
                 MissileSpeed = 1400,
                 Width = 60,
                 CollisionCount = 1
+            },
+            #endregion
+            #region Xayah
+            new SpellInfo()
+            {
+                ChampionName = "Xayah",
+                SpellName = "XayahQ",
+                MissileName = "XayahQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 1100,
+                Delay = 250,
+                MissileSpeed = 1400,
+                Width = 50,
+                CollisionCount = 0
             },
             #endregion
             #region XinZhao
@@ -2324,6 +2520,19 @@ namespace UnsignedEvade
             #region Yorick
             #endregion
             #region Zac
+            new SpellInfo()
+            {
+                ChampionName = "Zac",
+                SpellName = "ZacQ",
+                MissileName = "ZacQMissile",
+                ProjectileType = ProjectileType.LinearSkillshot,
+                CCType = BuffType.Slow,
+                Slot = SpellSlot.Q,
+                Range = 550,
+                Delay = 400,
+                Width = 120,
+                CollisionCount = 1
+            },
             #endregion
             //Add Zed W
             #region Zed
@@ -2423,35 +2632,35 @@ namespace UnsignedEvade
             },
             #endregion
             #region Zilean
+            new SpellInfo()
+            {
+                ChampionName = "Zilean",
+                SpellName = "ZileanQr",
+                MissileName = "ZileanQMissile",
+                ProjectileType = ProjectileType.CircularSkillshot,
+                Slot = SpellSlot.Q,
+                Range = 900,
+                Delay = 650,
+                Width = 150,
+                CollisionCount = 0
+            },
             #endregion
             #region Zyra
             new SpellInfo()
             {
                 ChampionName = "Zyra",
                 SpellName = "ZyraGraspingRoots",
-                MissileName = "ZyraGraspingRoots",
+                MissileName = "ZyraEMissile",
                 ProjectileType = ProjectileType.LinearSkillshot,
-                CCType = BuffType.Stun,
+                CCType = BuffType.Snare,
                 Slot = SpellSlot.E,
                 Range = 1150,
                 Delay = 250,
-                MissileSpeed = 1150,
+                MissileSpeed = 1450,
                 Width = 70,
                 CollisionCount = 1
             },
-            new SpellInfo()
-            {
-                ChampionName = "Zyra",
-                SpellName = "zyrapassivedeathmanager",
-                MissileName = "zyrapassivedeathmanager",
-                ProjectileType = ProjectileType.LinearSkillshot,
-                Slot = SpellSlot.Unknown,
-                Range = 1474,
-                Delay = 500,
-                MissileSpeed = 2000,
-                Width = 70,
-                CollisionCount = 0
-            }
+          
             #endregion
         };
     }
