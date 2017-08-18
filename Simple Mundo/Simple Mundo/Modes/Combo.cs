@@ -41,6 +41,7 @@ namespace Simple_Mundo.Modes
                 if (Settings.UseW && W.IsReady())
                 {
                     var targetW = TargetSelector.GetTarget(W.Range, DamageType.Magical);
+
                     if (targetW != null && targetW.IsValidTarget(W.Range * 2))
                         Program.WEnable();
                 }

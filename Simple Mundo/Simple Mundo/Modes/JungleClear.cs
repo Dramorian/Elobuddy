@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using EloBuddy.SDK;
 using Settings = Simple_Mundo.Config.JungleClear.JungleClearMenu;
+using Settings2 = Simple_Mundo.Config.Misc.MiscMenu;
 
 namespace Simple_Mundo.Modes
 {
@@ -30,8 +31,18 @@ namespace Simple_Mundo.Modes
 
             #region W JungleClear
 
-            if (Settings.UseW && W.IsReady())
-                Program.WEnable();
+            Core.DelayAction(delegate
+            {
+                if (Settings.UseW && W.IsReady())
+                {
+                    var monsterW = EntityManager.MinionsAndMonsters.GetJungleMonsters()
+                        .OrderByDescending(m => m.Health)
+                        .FirstOrDefault(m => m.IsValidTarget(W.Range * 2));
+
+                    if (monsterW != null && monsterW.IsValidTarget(W.Range * 2))
+                        Program.WEnable();
+                }
+            }, Settings2.WSDelay);
 
             #endregion
 

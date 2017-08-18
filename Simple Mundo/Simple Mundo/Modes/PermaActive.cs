@@ -29,7 +29,8 @@ namespace Simple_Mundo.Modes
                 var ksQ = EntityManager.Heroes.Enemies
                     .FirstOrDefault(
                         e => e.IsValidTarget() &&
-                             !e.IsDead && !e.IsZombie && !e.IsInvulnerable && e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
+                             !e.IsDead && !e.IsZombie && !e.IsInvulnerable &&
+                             e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
 
 
                 if (ksQ != null)
@@ -157,9 +158,12 @@ namespace Simple_Mundo.Modes
 
             #region R usage on low hp
 
-            if (!Player.Instance.IsInFountainRange() && Player.Instance.IsInShopRange() &&
-                Player.Instance.HealthPercent <= Settings2.RMinHP)
-                R.Cast();
+            if (Settings2.UseR && R.IsReady())
+            {
+                if (!Player.Instance.IsInFountainRange() && !Player.Instance.IsInShopRange() &&
+                    Player.Instance.HealthPercent < Settings2.RMinHP)
+                    R.Cast();
+            }
 
             #endregion
         }
