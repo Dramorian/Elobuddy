@@ -2,6 +2,7 @@
 using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Events;
 
 namespace Simple_Janna
@@ -52,21 +53,21 @@ namespace Simple_Janna
         private static void Interrupter_OnInterruptableSpell(Obj_AI_Base sender,
             Interrupter.InterruptableSpellEventArgs e)
         {
-            if (!SpellFactory.Q.IsReady() || sender.IsAlly) return;
-            if (Config.ReturnBoolMenu("Protector", "Interrupt") && sender.IsValidTarget(SpellFactory.Q.Range) &&
-                !sender.IsZombie)
-                SpellFactory.Q.Cast(sender);
+            if (SpellFactory.Q.IsReady() && sender.IsEnemy)
+                if (Config.ReturnBoolMenu("Protector", "Interrupt") && sender.IsValidTarget(SpellFactory.Q.Range) &&
+                    !sender.IsZombie && e.DangerLevel == DangerLevel.High)
+                    SpellFactory.Q.Cast(sender);
         }
 
         private static void Gapcloser_OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (sender.IsAlly || !SpellFactory.Q.IsReady()) return;
+            if (!sender.IsEnemy || !SpellFactory.Q.IsReady()) return;
             if (Config.ReturnBoolMenu("Protector", "GapClose") && sender.IsValidTarget(SpellFactory.Q.Range))
                 SpellFactory.Q.Cast(sender);
             else if (Config.ReturnBoolMenu("Protector", "GapCloseAllies"))
                 foreach (var ally in EntityManager.Heroes.Allies.Where(
                     x => x.IsAlly && Program._Player.IsInRange(x, SpellFactory.Q.Range)))
-                    if (sender.IsValidTarget(SpellFactory.Q.Range))
+                    if (sender.IsValidTarget(SpellFactory.Q.Range) && ally.IsAlly)
                         SpellFactory.Q.Cast(sender);
         }
     }

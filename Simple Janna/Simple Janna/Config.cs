@@ -20,8 +20,8 @@ namespace Simple_Janna
 
             JannaComboMenu = jannaMainMenu.AddSubMenu("Combo", "Combo");
             JannaComboMenu.AddLabel("[Combo Settings]");
-            JannaComboMenu.Add("UseQ", new CheckBox("Use Q"));
-            JannaComboMenu.Add("UseW", new CheckBox("Use W"));
+            JannaComboMenu.Add("ComboQ", new CheckBox("Use Q"));
+            JannaComboMenu.Add("ComboW", new CheckBox("Use W"));
             JannaComboMenu.Add("UseIgnite", new CheckBox("Use Ignite"));
             //JannaComboMenu.Add("HealthR", new Slider("Use Ulti(R) when Health is under (%):", 10, 1, 100));
             JannaComboMenu.AddSeparator(15);
@@ -32,15 +32,12 @@ namespace Simple_Janna
 
             JannaHarassMenu = jannaMainMenu.AddSubMenu("Harass", "Harass");
             JannaHarassMenu.AddLabel("[Harass Settings]");
-            JannaHarassMenu.Add("HarassQ", new CheckBox("Use Q"));
-            JannaHarassMenu.Add("HarassE", new CheckBox("Use W"));
+            JannaHarassMenu.Add("HarassW", new CheckBox("Use W"));
             JannaHarassMenu.Add("HarassManaSlider", new Slider("Minimum mana to Harass (%):", 40, 1));
 
             JannaProtectorMenu = jannaMainMenu.AddSubMenu("Protector", "Protector");
             JannaProtectorMenu.AddLabel("[Protector Settings]");
             JannaProtectorMenu.AddLabel("(This option will prioritize to protect Allies in teamfights)");
-            JannaProtectorMenu.AddLabel(
-                "(Also it wont cast (E) skill on Enemies in Combo Mode while allies are in range)");
             JannaProtectorMenu.Add("SupportMode", new CheckBox("Enable Janna Support Mode"));
             JannaProtectorMenu.AddLabel("[Gapcloser Settings]");
             JannaProtectorMenu.Add("GapClose", new CheckBox("Prevent GapClosers (Q)"));
@@ -129,16 +126,12 @@ namespace Simple_Janna
             {
                 case "Combo":
                     return JannaComboMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
-
                 case "Harass":
                     return JannaHarassMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
-
                 case "Protector":
                     return JannaProtectorMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
-
                 case "Drawings":
                     return JannaDrawingsMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
-
                 case "Misc":
                     return JannaMiscMenu[unqIdentifier].Cast<CheckBox>().CurrentValue;
             }

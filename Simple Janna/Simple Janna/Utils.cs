@@ -8,10 +8,10 @@ namespace Simple_Janna
     internal static class Utils
     {
         // public static void Initialize() { }
-        public static float TravelTimeCalculate(float distance, float delay, float Speed = 0)
-        {
-            return Speed != 0 ? distance / Speed + delay : delay;
-        }
+//        public static float TravelTimeCalculate(float distance, float delay, float Speed = 0)
+//        {
+//            return Speed != 0 ? distance / Speed + delay : delay;
+//        }
 
         public static float CalculateMaxDamage(AIHeroClient t)
         {

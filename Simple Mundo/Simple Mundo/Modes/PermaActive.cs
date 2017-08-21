@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
-using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Menu.Values;
 using Settings = Simple_Mundo.Config.Misc.MiscMenu;
 using Settings2 = Simple_Mundo.Config.Combo.ComboMenu;
@@ -26,22 +25,14 @@ namespace Simple_Mundo.Modes
 
             if (Settings.EnableKSQ && Q.IsReady())
             {
-                var ksQ = EntityManager.Heroes.Enemies
-                    .FirstOrDefault(
-                        e => e.IsValidTarget() &&
-                             !e.IsDead && !e.IsZombie && !e.IsInvulnerable &&
-                             e.Health < Player.Instance.GetSpellDamage(e, SpellSlot.Q));
-
+                var ksQ = TargetSelector.GetTarget(
+                    EntityManager.Heroes.Enemies.Where(
+                        e => e != null && e.IsValidTarget() && SpellManager.Q.IsInRange(e) &&
+                             e.Health <= SpellManager.QDamage(e)), DamageType.Magical);
 
                 if (ksQ != null)
-                {
-                    var qpred = Q.GetPrediction(ksQ);
-                    if (qpred.HitChance >= HitChance.High)
-                    {
-                        Q.Cast(qpred.CastPosition);
-                        return;
-                    }
-                }
+                    Q.Cast(ksQ);
+                return;
             }
 
             #endregion
@@ -159,11 +150,9 @@ namespace Simple_Mundo.Modes
             #region R usage on low hp
 
             if (Settings2.UseR && R.IsReady())
-            {
                 if (!Player.Instance.IsInFountainRange() && !Player.Instance.IsInShopRange() &&
                     Player.Instance.HealthPercent < Settings2.RMinHP)
                     R.Cast();
-            }
 
             #endregion
         }

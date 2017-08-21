@@ -23,25 +23,26 @@ namespace Simple_Janna
                 Program._Player.IsInFountainRange()) return;
 
             KillSteal();
+
             if (SpellFactory.E.IsReady()) ProtectorE();
             if (SpellFactory.R.IsReady()) ProtectorR();
 
             //Modes
             if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) Combo();
-            else if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass)) Harass();
-            else if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee)) Flee();
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass)) Harass();
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee)) Flee();
         }
 
         private static void Combo()
         {
-            if (SpellFactory.W.IsReady() && Config.ReturnBoolMenu("Combo", "UseW"))
+            if (SpellFactory.W.IsReady() && Config.ReturnBoolMenu("Combo", "ComboW"))
             {
                 var targetW = TargetSelector.GetTarget(SpellFactory.W.Range, DamageType.Magical);
                 if (targetW != null)
                     SpellFactory.W.Cast(targetW);
             }
 
-            if (SpellFactory.Q.IsReady() && Config.ReturnBoolMenu("Combo", "UseQ"))
+            if (SpellFactory.Q.IsReady() && Config.ReturnBoolMenu("Combo", "ComboQ"))
             {
                 var targetQ = TargetSelector.GetTarget(SpellFactory.Q.Range, DamageType.Magical);
                 if (targetQ != null)
@@ -55,12 +56,12 @@ namespace Simple_Janna
 
         private static void Harass()
         {
-            if (Program._Player.ManaPercent <= Config.ReturnIntMenu("Harass", "HarassManaSlider")) return;
-
-            if (!SpellFactory.W.IsReady() || !Config.ReturnBoolMenu("Harass", "HarassW")) return;
-            var target = TargetSelector.GetTarget(SpellFactory.W.Range, DamageType.Magical);
-            if (target != null)
-                SpellFactory.W.Cast(target);
+            if (SpellFactory.W.IsReady() && Config.ReturnBoolMenu("Harass", "HarassW") && Program._Player.ManaPercent >= Config.ReturnIntMenu("Harass", "HarassManaSlider"))
+            {
+                var targetW = TargetSelector.GetTarget(SpellFactory.W.Range, DamageType.Magical);
+                if (targetW != null)
+                    SpellFactory.W.Cast(targetW);
+            }
         }
 
         private static void Flee()
@@ -68,6 +69,7 @@ namespace Simple_Janna
             var target = TargetSelector.GetTarget(SpellFactory.Q.Range, DamageType.Magical);
 
             if (SpellFactory.Q.IsReady())
+                if (target != null)
                 SpellFactory.Q.Cast(target);
         }
 
@@ -114,17 +116,13 @@ namespace Simple_Janna
                 {
                     if (!ally.IsInFountainRange() && Program._Player.HealthPercent <= Config._AutoRJannaHp &&
                         ally.CountEnemyChampionsInRange(800) > 0)
-                        Orbwalker.DisableAttacking = true;
-                    Orbwalker.DisableMovement = true;
-                    SpellFactory.R.Cast(Program._Player);
+                        SpellFactory.R.Cast(Program._Player);
                 }
                 else if (!ally.IsMe && Config._AutoR(ally.ChampionName))
                 {
                     if (!ally.IsInFountainRange() && ally.HealthPercent <= Config._AutoRHp(ally.ChampionName) &&
                         ally.CountEnemyChampionsInRange(800) > 0)
-                        Orbwalker.DisableAttacking = true;
-                    Orbwalker.DisableMovement = true;
-                    SpellFactory.R.Cast(ally);
+                        SpellFactory.R.Cast(ally);
                 }
         }
     }

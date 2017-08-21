@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
@@ -7,6 +8,8 @@ namespace Simple_Mundo
 {
     public static class SpellManager
     {
+        public static AIHeroClient _player;
+
         static SpellManager()
         {
             // Initialize spells
@@ -16,15 +19,15 @@ namespace Simple_Mundo
             E = new Spell.Active(SpellSlot.E, 150);
             R = new Spell.Active(SpellSlot.R);
 
-            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner1).Name.ToLower()))
+            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner1).Name
+                .ToLower()))
             {
                 Smite = new Spell.Targeted(SpellSlot.Summoner1, 570);
                 return;
             }
-            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner2).Name.ToLower()))
-            {
+            if (Utility.SmiteNames.ToList().Contains(Player.Instance.Spellbook.GetSpell(SpellSlot.Summoner2).Name
+                .ToLower()))
                 Smite = new Spell.Targeted(SpellSlot.Summoner2, 570);
-            }
         }
 
         // You will need to edit the types of spells you have for each champ as they
@@ -36,6 +39,21 @@ namespace Simple_Mundo
         public static Spell.Active E { get; }
         public static Spell.Active R { get; }
         public static Spell.Targeted Smite { get; }
+
+        public static float QDamage(Obj_AI_Base target)
+        {
+            var mindamage = new[] { 80, 130, 180, 230, 280 }[Q.Level - 1];
+            var damage = new[] {0.15f, 0.175f, 0.20f, 0.225f, 0.25f}[Q.Level - 1] * target.Health;
+            return Player.Instance.CalculateDamageOnUnit(target, Q.DamageType, Math.Min(mindamage,damage));
+        }
+
+        public static float QDamageMinions(Obj_AI_Minion minion)
+        {
+            var mindamage = new[] { 80, 130, 180, 230, 280 }[Q.Level - 1];
+            var maxdamage = new[] {300, 350, 400, 450, 500}[Q.Level - 1];
+            return Player.Instance.CalculateDamageOnUnit(minion, Q.DamageType, Math.Min(mindamage,maxdamage));
+        }
+
 
         public static void Initialize()
         {

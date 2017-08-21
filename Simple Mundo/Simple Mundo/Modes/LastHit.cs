@@ -9,6 +9,7 @@ namespace Simple_Mundo.Modes
     public sealed class LastHit : ModeBase
     {
         public static AIHeroClient _Player => ObjectManager.Player;
+
         public override bool ShouldBeExecuted()
         {
             // Only execute this mode when the orbwalker is on lasthit mode
@@ -21,17 +22,14 @@ namespace Simple_Mundo.Modes
             if (Settings.UseQ && Q.IsReady())
             {
                 var minionsQ =
-                    EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, _Player.Position,
-                            Q.Range)
-                        .FirstOrDefault(m =>
-                            m.Distance(_Player) <= Q.Range &&
-                            m.Health <= _Player.GetSpellDamage(m, SpellSlot.Q) &&
-                            m.IsValidTarget());
+                    EntityManager.MinionsAndMonsters.EnemyMinions
+                        .FirstOrDefault(m => m.IsValidTarget(SpellManager.Q.Range) &&
+                                             m.Health < SpellManager.QDamageMinions(m));
                 if (minionsQ != null)
                 {
-                    var qPred = Q.GetPrediction(minionsQ);
-                    if (qPred.HitChance >= HitChance.High)
-                        Q.Cast(qPred.CastPosition);
+                    var qpred = Q.GetPrediction(minionsQ);
+                    if (qpred.HitChance >= HitChance.Medium)
+                        Q.Cast(qpred.CastPosition);
                 }
             }
         }
