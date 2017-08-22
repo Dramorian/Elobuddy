@@ -42,7 +42,7 @@ namespace Simple_Mundo.Modes
                 {
                     var targetW = TargetSelector.GetTarget(W.Range, DamageType.Magical);
 
-                    if (targetW != null && targetW.IsValidTarget(W.Range * 2))
+                    if (targetW != null && targetW.IsValidTarget(450))
                         Program.WEnable();
                 }
             }, Settings2.WSDelay);

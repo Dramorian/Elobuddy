@@ -41,9 +41,7 @@ namespace Simple_Mundo
 
         public static bool WStatus()
         {
-            if (Player.HasBuff("BurningAgony"))
-                return true;
-            return false;
+            return Player.HasBuff("BurningAgony");
         }
 
         public static void WEnable()

@@ -28,7 +28,7 @@ namespace Simple_Mundo.Modes
                 var ksQ = TargetSelector.GetTarget(
                     EntityManager.Heroes.Enemies.Where(
                         e => e != null && e.IsValidTarget() && SpellManager.Q.IsInRange(e) &&
-                             e.Health <= SpellManager.QDamage(e)), DamageType.Magical);
+                             e.Health <= SpellManager.Qdamage(e)), DamageType.Magical);
 
                 if (ksQ != null)
                     Q.Cast(ksQ);
@@ -138,8 +138,8 @@ namespace Simple_Mundo.Modes
                 {
                     var monsters =
                         EntityManager.MinionsAndMonsters.CombinedAttackable.Count(
-                            monster => monster.IsValidTarget(W.Range * 2));
-                    var enemies = EntityManager.Heroes.Enemies.Count(enemy => enemy.IsValidTarget(W.Range * 2));
+                            monster => monster.IsValidTarget(450));
+                    var enemies = EntityManager.Heroes.Enemies.Count(enemy => enemy.IsValidTarget(450));
                     if (monsters == 0 && enemies == 0)
                         Program.WDisable();
                 }

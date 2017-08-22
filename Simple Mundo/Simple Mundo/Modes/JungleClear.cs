@@ -37,9 +37,9 @@ namespace Simple_Mundo.Modes
                 {
                     var monsterW = EntityManager.MinionsAndMonsters.GetJungleMonsters()
                         .OrderByDescending(m => m.Health)
-                        .FirstOrDefault(m => m.IsValidTarget(W.Range * 2));
+                        .FirstOrDefault(m => m.IsValidTarget(450));
 
-                    if (monsterW != null && monsterW.IsValidTarget(W.Range * 2))
+                    if (monsterW != null && monsterW.IsValidTarget(450))
                         Program.WEnable();
                 }
             }, Settings2.WSDelay);

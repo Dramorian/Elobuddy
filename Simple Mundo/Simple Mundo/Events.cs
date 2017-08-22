@@ -32,12 +32,9 @@ namespace Simple_Mundo
 
         public static void OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
         {
-            if (sender == null || sender.IsAlly || Config.Misc.MiscMenu.GapcloseQ)
-                return;
-
-            var gapclosepred = SpellManager.Q.GetPrediction(sender);
-            if (SpellManager.Q.IsReady() && SpellManager.Q.IsInRange(sender) && e.End.Distance(Player.Instance) <= 300)
-                SpellManager.Q.Cast(gapclosepred.CastPosition);
+            if (SpellManager.Q.IsReady() && sender != null && sender.IsEnemy && 
+                sender.IsValidTarget(SpellManager.Q.Range) &&  Config.Misc.MiscMenu.GapcloseQ)
+                SpellManager.Q.Cast(sender);
         }
 
 

@@ -24,7 +24,7 @@ namespace Simple_Mundo.Modes
                 var minionsQ =
                     EntityManager.MinionsAndMonsters.EnemyMinions
                         .FirstOrDefault(m => m.IsValidTarget(SpellManager.Q.Range) &&
-                                             m.Health < SpellManager.QDamageMinions(m));
+                                             m.Health < SpellManager.QdamageMinions(m));
                 if (minionsQ != null)
                 {
                     var qpred = Q.GetPrediction(minionsQ);

@@ -15,7 +15,7 @@ namespace Simple_Mundo
             // Initialize spells
             Q = new Spell.Skillshot(SpellSlot.Q, 1050, SkillShotType.Linear, 250, 2000, 60)
                 {AllowedCollisionCount = 0};
-            W = new Spell.Active(SpellSlot.W, 162);
+            W = new Spell.Active(SpellSlot.W);
             E = new Spell.Active(SpellSlot.E, 150);
             R = new Spell.Active(SpellSlot.R);
 
@@ -40,18 +40,24 @@ namespace Simple_Mundo
         public static Spell.Active R { get; }
         public static Spell.Targeted Smite { get; }
 
-        public static float QDamage(Obj_AI_Base target)
+        public static float Qdamage(Obj_AI_Base target)
         {
-            var mindamage = new[] { 80, 130, 180, 230, 280 }[Q.Level - 1];
-            var damage = new[] {0.15f, 0.175f, 0.20f, 0.225f, 0.25f}[Q.Level - 1] * target.Health;
-            return Player.Instance.CalculateDamageOnUnit(target, Q.DamageType, Math.Min(mindamage,damage));
+            var damage = Math.Max(
+                new float[] {80, 130, 180, 230, 280}[Q.Level - 1],
+                new[] {15f, 17.5f, 20f, 22.5f, 25f}[Q.Level - 1] / 100
+                * target.Health);
+            return Player.Instance.CalculateDamageOnUnit(target, Q.DamageType, damage);
         }
 
-        public static float QDamageMinions(Obj_AI_Minion minion)
+        public static float QdamageMinions(Obj_AI_Minion target)
         {
-            var mindamage = new[] { 80, 130, 180, 230, 280 }[Q.Level - 1];
-            var maxdamage = new[] {300, 350, 400, 450, 500}[Q.Level - 1];
-            return Player.Instance.CalculateDamageOnUnit(minion, Q.DamageType, Math.Min(mindamage,maxdamage));
+            var damage = Math.Min(
+                new float[] {300, 350, 400, 450, 500}[Q.Level - 1],
+                Math.Max(
+                    new float[] {80, 130, 180, 230, 280}[Q.Level - 1],
+                    new[] {15f, 17.5f, 20f, 22.5f, 25f}[Q.Level - 1] / 100
+                    * target.Health));
+            return Player.Instance.CalculateDamageOnUnit(target, Q.DamageType, damage);
         }
 
 
